@@ -1,11 +1,7 @@
-import { useState } from 'react'
 import './App.css'
 import { ProfileCard } from './ProfileCard.jsx';
 
 function App() {
-
-// 進捗率をstateとして管理
-const [progress, setProgress] = useState(0); // 初期値は0％
 
 // 社員のプロフィール情報
 const profiles = [
@@ -16,20 +12,10 @@ const profiles = [
   { name: '武者小路勇気', age: 29, bio: 'フロントエンドエンジニア。ReactとTypeScriptを使って開発中です。' }
 ];
 
-// 章ごとのUUID（起動時に1度だけ生成される）
-const profilesKeys = profiles.map(() => crypto.randomUUID());
-
-const handleClick = () => {
-  setProgress(progress + 1); // 現在のprogressに1を加算       
-  if (progress > 3) {
-  setProgress(0); // 現在のprogressに1を加算        
-  }
-};
-
   return (
     <>
-    <ProfileCard progress={progress} setProgress={setProgress} profilesKeys={profilesKeys} profiles={profiles} />
-    <button onClick={handleClick}>次のプロフィール</button>
+    <ProfileCard profiles={profiles} />   
+    
     </>
   )
 }
